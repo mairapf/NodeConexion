@@ -34,9 +34,15 @@ router.get('/articulo', (req, res, next) => {
 });
 
 router.post('/inicio', (req, res, next) => {
+	var clave = req.body.clave;
+
+	var crypto = require('crypto');
+	var md5 = crypto.createHash('md5').update(clave).digest('hex');
+	console.log(md5);
+
   const results = [];
   // Grab data from http request
-  const data = {email: req.body.email, clave: req.body.clave};
+  const data = {email: req.body.email, clave: md5 };
   // Get a Postgres client from the connection pool
   pg.connect(connectionString, (err, client, done) => {
     // Handle connection errors
