@@ -10,6 +10,10 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/articulo', (req, res, next) => {
+	res.header("Access-Control-Allow-Origin", "*");
+  	res.header("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT");
+  	res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
+
   const results = [];
   // Get a Postgres client from the connection pool
   pg.connect(connectionString, (err, client, done) => {
@@ -38,6 +42,7 @@ router.post('/inicio', (req, res, next) => {
 	res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
+	
 	var clave = req.body.clave;
 
 	var crypto = require('crypto');
