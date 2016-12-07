@@ -34,6 +34,10 @@ router.get('/articulo', (req, res, next) => {
 });
 
 router.post('/inicio', (req, res, next) => {
+
+	res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
 	var clave = req.body.clave;
 
 	var crypto = require('crypto');
