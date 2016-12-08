@@ -156,7 +156,7 @@ router.post('/art', (req, res, next) => {
       return res.status(500).json({success: false, data: err});
     }
     
-    const query = client.query('select * from articulo where codigo_articulo = $1',
+    const query = client.query('select * from articulo where codigo_articulo = $1 order by 1 asc ',
     [data.dato]);
     // Stream results back one row at a time
     query.on('row', (row) => {
