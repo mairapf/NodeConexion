@@ -24,7 +24,7 @@ router.get('/articulo', (req, res, next) => {
       return res.status(500).json({success: false, data: err});
     }
     // SQL Query > Select Data
-    const query = client.query('SELECT * FROM articulo;');
+    const query = client.query('SELECT * FROM articulo order by 1 asc;');
     // Stream results back one row at a time
     query.on('row', (row) => {
       results.push(row);
@@ -156,7 +156,7 @@ router.post('/art', (req, res, next) => {
       return res.status(500).json({success: false, data: err});
     }
     
-    const query = client.query('select * from articulo where codigo_articulo = $1 order by 1 asc ',
+    const query = client.query('select * from articulo where codigo_articulo = $1  ',
     [data.dato]);
     // Stream results back one row at a time
     query.on('row', (row) => {
